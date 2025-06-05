@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.0.0
+title: BKMUS
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Roman
+    family-names: Bögli
+    email: roman.boegli@unibe.ch
+    affiliation: University of Bern
+    orcid: "https://orcid.org/0009-0004-8745-7800"
+repository-code: "https://github.com/RomanBoegli/BKMUS"
+abstract: Bitcoin Key Management Usability Study
+keywords:
+  - python
+  - bitcoin
+  - usability study
+license: apache-2.0
