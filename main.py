@@ -27,6 +27,11 @@ print("\n\033[1m--- H1: Wallet-Level Averages ---\033[0m")
 h1_summary = df.groupby("Wallet")[heuristics + ["TaskMean"]].mean().round(2)
 print(tabulate(h1_summary, headers="keys", tablefmt="fancy_grid"))
 
+# H1 conclusion (descriptive only)
+print(
+    "Manual comparison with results form table above and Eskandari et al. (2018)'s reported usability challenges is required to determine improvement."
+)
+
 # ---------------------
 # H2: Conditional test
 # ---------------------
@@ -67,8 +72,14 @@ else:
     h2_result = stats.kruskal(group_hw, group_sw, group_cu)
     print(f"Kruskal-Wallis H={h2_result.statistic:.3f}, p={h2_result.pvalue:.4f}")
 
+# H2 conclusion
+if h2_result.pvalue < 0.05:
+    print("✅ H2 supported: significant difference between wallet types.")
+else:
+    print("❌ H2 not supported: no significant difference.")
+
 # ---------------------
-# H3: Prompt vs. G1 and G5
+# H3a: Prompt vs. G1 and G5
 # ---------------------
 print("\n\033[1m--- H3a: Backup Prompt Effect ---\033[0m")
 g1_prompt = df.groupby(["Wallet", "Expert", "BackupPrompt"])["G1"].mean().reset_index()
@@ -85,8 +96,19 @@ g5_stat = stats.mannwhitneyu(g5p_yes, g5p_no, alternative="two-sided")
 print(f"G1: U={g1_stat.statistic:.2f}, p={g1_stat.pvalue:.4f}")
 print(f"G5: U={g5_stat.statistic:.2f}, p={g5_stat.pvalue:.4f}")
 
+# H3a conclusions
+if g1_stat.pvalue < 0.05:
+    print("✅ H3a (G1): supported - prompt has a significant effect.")
+else:
+    print("❌ H3a (G1): not supported - no significant effect.")
+
+if g5_stat.pvalue < 0.05:
+    print("✅ H3a (G5): supported - prompt has a significant effect.")
+else:
+    print("❌ H3a (G5): not supported - no significant effect.")
+
 # ---------------------
-# H3: Validation vs. G1 and G5
+# H3b: Validation vs. G1 and G5
 # ---------------------
 print("\n\033[1m--- H3b: Backup Validation Effect ---\033[0m")
 g1_val = df.groupby(["Wallet", "Expert", "BackupProof"])["G1"].mean().reset_index()
@@ -102,3 +124,14 @@ g5v_stat = stats.mannwhitneyu(g5v_yes, g5v_no, alternative="two-sided")
 
 print(f"G1: U={g1v_stat.statistic:.2f}, p={g1v_stat.pvalue:.4f}")
 print(f"G5: U={g5v_stat.statistic:.2f}, p={g5v_stat.pvalue:.4f}")
+
+# H3b conclusions
+if g1v_stat.pvalue < 0.05:
+    print("✅ H3b (G1): supported - validation has a significant effect.")
+else:
+    print("❌ H3b (G1): not supported - no significant effect.")
+
+if g5v_stat.pvalue < 0.05:
+    print("✅ H3b (G5): supported - validation has a significant effect.")
+else:
+    print("❌ H3b (G5): not supported - no significant effect.")
