@@ -3,7 +3,7 @@ from scipy import stats
 from tabulate import tabulate
 
 # Load the file
-file_path = "DataCollection_Dummy.xlsx"
+file_path = "DataCollection_Dummy.xlsx"  # <-- change this
 df = pd.read_excel(file_path, header=3)
 
 # Clean columns
