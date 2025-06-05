@@ -25,7 +25,7 @@ df["TaskMean"] = df[heuristics].mean(axis=1)
 # ---------------------
 print("\n\033[1m--- H1: Wallet-Level Averages ---\033[0m")
 h1_summary = df.groupby("Wallet")[heuristics + ["TaskMean"]].mean().round(2)
-print(tabulate(h1_summary, headers="keys", tablefmt="fancy_grid"))
+print(tabulate(h1_summary, headers="keys", tablefmt="fancy_grid"))  # type: ignore
 
 # H1 conclusion (descriptive only)
 print(
