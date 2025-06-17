@@ -66,3 +66,5 @@ Follow these steps to set up and run the analysis:
   ```
 
 This will return your terminal to the system Python environment.
+
+---
